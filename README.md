@@ -3,12 +3,10 @@
 ## Project setup
 ```
 npm install
-```
-
-### Compiles and hot-reloads for development
-```
 npm run serve
-
+```
+## For live server
+```
 cd public/data
 json-server users.json
 ```
