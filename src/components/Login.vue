@@ -1,6 +1,5 @@
 <template>
   <div class="login">
-    <!-- <h1>Login</h1> -->
     <form class="card login-card" action>
       <div class="card-content">
         <span class="card-title">Authentification</span>
@@ -25,7 +24,10 @@
       >Email was sent to {{ email }}</v-alert
     >
     <v-alert v-if="isAuthenticated" color="green"
-      >Succesfully signed in. Now you can access <router-link style="color:blue;text-decoration:underline"to='/home'>Home</router-link></v-alert
+      >Succesfully signed in. Now you can access
+      <router-link style="color: blue; text-decoration: underline" to="/home"
+        >Home</router-link
+      ></v-alert
     >
   </div>
 </template>
@@ -56,23 +58,19 @@ export default {
         },
       };
 
-        this.$store.dispatch('loginWithEmail',formData)
-        this.emailSent = true;
-
+      this.$store.dispatch("loginWithEmail", formData);
+      this.emailSent = true;
     },
   },
   created() {
     const url = location.href;
     const email = localStorage.emailForSignIn;
+
     if (firebase.auth().isSignInWithEmailLink(url)) {
       firebase.auth().signInWithEmailLink(email, url);
       this.isAuthenticated = true;
-      console.log("AUTHENTIFICATED")
-      console.log(firebase.auth().isSignInWithEmailLink(url))
     }
-   
-    
-  }
+  },
 };
 </script>
 

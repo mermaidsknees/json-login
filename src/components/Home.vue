@@ -19,8 +19,8 @@ import axios from "axios";
 import UserCard from "@/components/UserCard";
 import Popup from "./Popup";
 import Observer from "./Observer";
-import { mapGetters } from 'vuex'
-import firebase from 'firebase'
+import { mapGetters } from "vuex";
+import firebase from "firebase";
 const baseURL = "http://localhost:3000/users/";
 
 export default {
@@ -47,9 +47,6 @@ export default {
       this.first_name = "";
     },
     async fetch() {
-    //   this.$store.dispatch("loggedInWithEmail", localStorage.emailForSignIn);
-
-    
       const requestSignInLink = async ({ commit }, { email }) => {
         commit("setSignInEmail", email);
         await sendSignInLink(email);
@@ -62,7 +59,7 @@ export default {
 
       this.page++;
     },
-  }
+  },
 };
 </script>
 
