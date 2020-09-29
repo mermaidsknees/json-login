@@ -48,6 +48,13 @@ export default {
     },
     async fetch() {
     //   this.$store.dispatch("loggedInWithEmail", localStorage.emailForSignIn);
+
+    
+      const requestSignInLink = async ({ commit }, { email }) => {
+        commit("setSignInEmail", email);
+        await sendSignInLink(email);
+      };
+
       const res = await axios.get(
         `http://localhost:3000/users?_page=${this.page}&_limit=15`
       );
@@ -55,17 +62,7 @@ export default {
 
       this.page++;
     },
-  },
-  computed: {
-    ...mapGetters(["signInEmail"]),
-  },
-  created() {
-    const url = location.href;
-    const email = this.signInEmail;
-    if (firebase.auth().isSignInWithEmailLink(url)) {
-      firebase.auth().signInWithEmailLink(email, url);
-    }
-  },
+  }
 };
 </script>
 

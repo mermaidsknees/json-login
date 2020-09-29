@@ -37,13 +37,10 @@ router.beforeEach(async(to,from,next) =>{
   const requireAuth = to.matched.some(record=>record.meta.auth)
 
  if(requireAuth && !currentUser){
-   next()
+   next(false)
  } else {
    next()
  }
-
-
-  
 
 })
 

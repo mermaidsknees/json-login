@@ -1,12 +1,11 @@
 <template>
 <div class="admin-layout">
        
-<v-layout>     <!-- <Popup/> -->
+<v-layout>     
   <nav>
     <div class="nav-wrapper">
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a @click.prevent="reload"><i class="material-icons">refresh</i></a></li>
-        <!-- <li><a @click.prevent="$emit('create-user')">Create User</a></li> -->
         <li><a @click.prevent="logout">Log Out</a></li>
 
       </ul>

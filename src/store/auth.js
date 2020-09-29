@@ -1,7 +1,8 @@
 import firebase from "firebase/app";
 
-
 export default {
+
+
   actions: {
     async login({ dispatch, commit }, { email, password }) {
       try {
@@ -35,16 +36,12 @@ export default {
           .auth()
           .signInWithEmailLink(email, window.location.href)
           .then(function(result) {
-            // window.localStorage.removeItem("emailForSignIn");
-            // var emailUser = result.user
             window.localStorage.setItem('emailUser', result.data)
           })
           .catch(function(error) {
               throw error
             });
         }
-        console.log(localStorage.emailForSignIn)
-        console.log(localStorage.emailUser)
     },
     logout(){
         firebase.auth().signOut();

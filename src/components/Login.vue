@@ -8,10 +8,6 @@
           <input v-model="email" type="text" />
           <label for="email">Email</label>
         </div>
-        <div class="input-field">
-          <input v-model="password" type="password" />
-          <label for="password">Password</label>
-        </div>
         <div class="card-button">
           <button
             @click.prevent="submitHandler()"
@@ -25,15 +21,18 @@
         </div>
       </div>
     </form>
-    <v-alert v-if="emailSent" color="green"
+    <v-alert v-if="emailSent" color="blue"
       >Email was sent to {{ email }}</v-alert
+    >
+    <v-alert v-if="isAuthenticated" color="green"
+      >Succesfully signed in. Now you can access <router-link style="color:blue;text-decoration:underline"to='/home'>Home</router-link></v-alert
     >
   </div>
 </template>
 
 
 <script>
-// import firebase from "firebase";
+import firebase from "firebase";
 import axios from "axios";
 
 export default {
@@ -41,10 +40,9 @@ export default {
   data() {
     return {
       email: "",
-      password: "",
       emailSent: false,
       error: null,
-      success: false,
+      isAuthenticated: false,
     };
   },
   methods: {
@@ -53,20 +51,27 @@ export default {
         email: this.email,
         password: this.password,
         actionCodeSettings: {
-          url: "http://localhost:8082/home",
+          url: "http://localhost:8080/",
           handleCodeInApp: true,
         },
       };
 
-      try {
-        // await this.$store.dispatch('login', formData)
-        await this.$store.dispatch("loginWithEmail", formData);
-        // await this.$store.dispatch('loggedInWithEmail',formData)
-        // this.$router.push('/home')
-      } catch (e) {
-        throw e;
-      }
+        this.$store.dispatch('loginWithEmail',formData)
+        this.emailSent = true;
+
     },
+  },
+  created() {
+    const url = location.href;
+    const email = localStorage.emailForSignIn;
+    if (firebase.auth().isSignInWithEmailLink(url)) {
+      firebase.auth().signInWithEmailLink(email, url);
+      this.isAuthenticated = true;
+      console.log("AUTHENTIFICATED")
+      console.log(firebase.auth().isSignInWithEmailLink(url))
+    }
+   
+    
   }
 };
 </script>
