@@ -1,10 +1,10 @@
 # json-login
 
 Features: 
-  *Firebase passwordless login system
-  *Private routes
-  *CRUD operations using axios
-  *Infinite Scrolling
+  -Firebase passwordless login system
+  -Private routes
+  -CRUD operations using Axios
+  -Infinite Scrolling
  
 
 
