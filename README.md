@@ -1,6 +1,15 @@
 # json-login
 
-For the app to properly run locally, it must run on ports 8080 and 3000
+Features: 
+  *Firebase passwordless login system
+  *Private routes
+  *CRUD operations using axios
+  *Infinite Scrolling
+ 
+
+
+
+For the site to properly run locally, it must run on ports 8080 and 3000
 
 
 ## Project setup
